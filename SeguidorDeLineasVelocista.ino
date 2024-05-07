@@ -30,8 +30,8 @@ Boton boton(BTN);
 
 //
 int velocidadMax = 0;
-// int potenciaMax = 0;
-// int potenciador = 0;
+int potenciaMax = 0;
+int potenciador = 1.4;
 int sp = 2500;  //Valor de referencia para PD
 uint16_t position = 0;
 //
@@ -74,7 +74,7 @@ void setup()
     velocidadMax = 70;
 
     kp = 0.8; // 0.8
-    kd = 2.6; // 2.6
+    kd = 4.0; // 2.6
   }
   else if (tiempo <= 2000)
   {
@@ -93,9 +93,9 @@ void setup()
     kd = 2.5;
   }
 
-  // potenciaMax = velocidadMax;// * potenciador;
-  // if (potenciaMax > 255)
-  //   potenciaMax = 255;
+  potenciaMax = velocidadMax * potenciador;
+  if (potenciaMax > 255)
+    potenciaMax = 255;
 
   led.parpadear(v, 300);
 
@@ -126,11 +126,11 @@ void loop()
 
   errorAnterior = error;
 
-  if (signal > velocidadMax)
-    signal = velocidadMax;
+  if (signal > potenciaMax)
+    signal = potenciaMax;
 
-  if (signal < -velocidadMax)
-    signal = -velocidadMax;
+  if (signal < -potenciaMax)
+    signal = -potenciaMax;
 
   if (signal > 0)
   {
