@@ -29,9 +29,9 @@ Boton boton(BTN);
 
 
 //
-int velocidadMax = 0;
-int potenciaMax = 0;
-int potenciador = 1.8;
+float velocidadMax = 0;
+float potenciaMax = 0;
+float potenciador = 1.8;
 int sp = 2500;  //Valor de referencia para PD
 uint16_t position = 0;
 //
@@ -46,7 +46,7 @@ int error = 0;
 //
 
 void setup() {
-  Serial.begin(9600);
+  // Serial.begin(9600);
 
   led.begin();
   boton.begin(0);
@@ -71,15 +71,17 @@ void setup() {
     v = 1;
     velocidadMax = 70;
 
-    kp = 1.5;  // 0.8
-    kd = 4.5;  // 2.6
-  } else if (tiempo <= 2000) {
+    kp = 0.05;  // 0.15
+    kd = 1.5;  // 1.55
+  }
+  else if (tiempo <= 2000) {
     v = 2;
     velocidadMax = 120;
 
     kp = 1.0;
     kd = 3.6;
-  } else {
+  }
+  else {
     v = 3;
     velocidadMax = 160;
 
@@ -129,8 +131,6 @@ void loop() {
   if (potencia < -potenciaMax)
     potencia = -potenciaMax;
 
-  Serial.println(potencia);
-
   if (potencia > 0) {
     establecerMotores(velocidadMax - potencia, velocidadMax);
   } else if (potencia < 0) {
@@ -138,6 +138,7 @@ void loop() {
   } else {
     establecerMotores(velocidadMax, velocidadMax);
   }
+  // Serial.println();
 }
 
 
@@ -198,6 +199,8 @@ void establecerMotorDerecho(int velocidad) {
   if (velocidad < -255)
     velocidad = -255;
 
+  // Serial.print("der:" + String(velocidad) + "\t");
+
   if (velocidad > 0) {
     analogWrite(MOTORD_A, velocidad);
     analogWrite(MOTORD_B, 0);
@@ -218,6 +221,8 @@ void establecerMotorIzquierdo(int velocidad) {
 
   if (velocidad < -255)
     velocidad = -255;
+  
+  // Serial.print("izq:" + String(velocidad) + "\t");
 
   if (velocidad > 0) {
     analogWrite(MOTORI_A, 0);
