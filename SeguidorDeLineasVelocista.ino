@@ -71,8 +71,8 @@ void setup() {
     v = 1;
     velocidadMax = 70;
 
-    kp = 0.05;  // 0.15
-    kd = 1.5;  // 1.55
+    kp = 0.1;  // 0.1
+    kd = 1.55;  // 1.55
   }
   else if (tiempo <= 2000) {
     v = 2;
@@ -83,7 +83,7 @@ void setup() {
   }
   else {
     v = 3;
-    velocidadMax = 160;
+    velocidadMax = 180;
 
     kp = 0.7;
     kd = 2.5;
@@ -113,6 +113,8 @@ void loop() {
   // read calibrated sensor values and obtain a measure of the line position
   // from 0 to 5000 (for a white line, use readLineWhite() instead)
   position = qtr.readLineBlack(sensorValues);
+
+  // Serial.println("Sensor:" + String(position));
 
   error = sp - position;
 
