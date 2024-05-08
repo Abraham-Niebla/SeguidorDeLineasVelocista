@@ -31,7 +31,7 @@ Boton boton(BTN);
 //
 float velocidadMax = 0;
 float potenciaMax = 0;
-float potenciador = 1.8;
+float potenciador = 1.8; //1.8
 int sp = 2500;  //Valor de referencia para PD
 uint16_t position = 0;
 //
@@ -69,21 +69,21 @@ void setup() {
 
   if (tiempo <= 1000) {
     v = 1;
-    velocidadMax = 70;
+    velocidadMax = 100;
 
-    kp = 0.1;  // 0.1
-    kd = 1.55;  // 1.55
+    kp = 0.3;   // 0.1
+    kd = 2.2;  // 1.55
   }
   else if (tiempo <= 2000) {
     v = 2;
-    velocidadMax = 120;
+    velocidadMax = 150;
 
-    kp = 1.0;
-    kd = 3.6;
+    kp = 0.58;  //0.2
+    kd = 3.4;  //3.1
   }
   else {
     v = 3;
-    velocidadMax = 180;
+    velocidadMax = 200;
 
     kp = 0.7;
     kd = 2.5;
