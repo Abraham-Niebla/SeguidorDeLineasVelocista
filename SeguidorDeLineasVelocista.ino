@@ -71,22 +71,22 @@ void setup() {
     v = 1;
     velocidadMax = 100;
 
-    kp = 0.3;   // 0.1
-    kd = 2.2;  // 1.55
+    kp = 0.12;  // 0.12
+    kd = 3.0;   // 3.0
   }
   else if (tiempo <= 2000) {
     v = 2;
     velocidadMax = 150;
 
-    kp = 0.58;  //0.2
-    kd = 3.4;  //3.1
+    kp = 0.5;   // 0.5
+    kd = 4.56;  // 4.56
   }
   else {
     v = 3;
     velocidadMax = 200;
 
-    kp = 0.7;
-    kd = 2.5;
+    kp = 2.08; // 0.0
+    kd = 6.93; // 0.0
   }
 
   potenciaMax = velocidadMax * potenciador;
